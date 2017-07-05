@@ -60,3 +60,7 @@ gem 'validates_timeliness', '~> 4.0'
 gem 'rails-i18n'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+
+group :production do
+  gem 'pg'
+end
