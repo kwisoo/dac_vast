@@ -1,2 +1,60 @@
 <h1>キャンペーン登録</h1>
 <% #TODO %>
+<div class="row">
+  <div class="col-xc-6">
+    <%= form_for(@campaign) do |f| %>
+      <% if @campaign.errors.any? %>
+        <div class="alert alert-warning">
+          <ul>
+            <% @campaign.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+  
+      <div class="form-group">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+  
+      <div class="form-group">
+        <%= f.label :start_at, "Start at" %>
+        <div class="input-group date datetimepicker">
+          <%= f.text_field :start_at, class: "form-control", placeholder: 'YYYY/MM/DD hh:mm:ss' %>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :end_at, "End at" %>
+        <%= f.text_field :end_at, class: "form-control", placeholder: 'YYYY/MM/DD hh:mm:ss' %>
+      </div>  
+      
+      <div class="form-group">
+        <%= f.label :limit_start, "Limit Start" %>
+        <%= f.text_field :limit_start, class: "form-control" %>
+      </div>      
+
+      <div class="form-group">
+        <%= f.label :movie_url, "Movie URL" %>
+        <%= f.text_field :movie_url, class: "form-control" %>
+      </div>
+      
+      <div class="check_box" >
+        <%= f.label :name, "Cuepoints" %>
+        <br>
+        <%= f.collection_check_boxes(:cuepoint_ids, Cuepoint.all, :id, :name) do |b| %>
+          <%= b.label { b.check_box + b.text } %>
+        </br>
+        <% end %>
+      </div>
+      
+      <%= f.submit "登録", class: "btn btn-primary" %>
+      <%= link_to "中止", campaigns_url, class: 'btn btn-default' %>
+
+    <% end %>
+  </div>
+</div>

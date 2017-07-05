@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 20170607020029) do
   create_table "results", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "campaign_id"
     t.integer  "cuepoint_id"
-    t.integer  "count_start"
-    t.integer  "count_complete"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "count_start",    default: 0, null: false
+    t.integer  "count_complete", default: 0, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["campaign_id"], name: "index_results_on_campaign_id", using: :btree
     t.index ["cuepoint_id"], name: "index_results_on_cuepoint_id", using: :btree
   end

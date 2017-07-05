@@ -1,2 +1,32 @@
 <h1>キューポイント編集</h1>
 <% #TODO %>
+<div class="row">
+  <div class="col-xc-6">
+    <%= form_for(@cuepoint) do |f| %>
+      <% if @cuepoint.errors.any? %>
+        <div class="alert alert-warning">
+          <ul>
+            <% @cuepoint.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+  
+      <div class="form-group">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <p> VAST URL </p>
+        <%= vast_url(@cuepoint) %>
+      </div>
+      
+      <%= f.submit "登録", class: "btn btn-primary" %>
+      <%= link_to "削除", @cuepoint, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger' %>
+      <%= link_to "中止", cuepoints_url, class: 'btn btn-default' %>
+
+    <% end %>
+  </div>
+</div>
