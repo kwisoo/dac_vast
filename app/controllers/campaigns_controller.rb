@@ -76,3 +76,5 @@ class CampaignsController < ApplicationController
       params.require(:campaign).permit(:name, :start_at, :end_at, :limit_start, :movie_url, cuepoint_ids: [] )
     end
 end
+
+
